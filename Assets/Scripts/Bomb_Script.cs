@@ -1,0 +1,96 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Bomb_Script : MonoBehaviour
+{
+    public GameObject player;
+    public LayerMask explodableLayers;
+    public LayerMask StopsExplosionLayers;
+
+    private Rigidbody bombRb;
+    private Rigidbody playerRb;
+
+    private bool explosionStarted = false;
+    private bool frozen = false;
+    private bool burned = false;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    // Runs 60 times a second.
+    private void FixedUpdate()
+    {
+        if (explosionStarted == false && transform.position.y > 0.5 && frozen == false)
+        {
+            explosionStarted = true;
+            StartCoroutine(ExplosionTimer(3));
+        }
+    }
+
+    // Starts an explosion 5 seconds after the bomb is created, unless frozen.
+    private IEnumerator ExplosionTimer(float time)
+    {
+        yield return new WaitForSeconds(time);
+        Explosion();
+    }
+
+    // Explodes the bomb when detonated
+    private void Explosion()
+    {
+        if ((frozen && !burned) || transform.position.y < 0.5) {
+            return;
+        }
+
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 4, explodableLayers);
+        foreach (Collider collider in hitColliders)
+        {
+            // Makes sure there is no object between the bomb and the target object.
+            RaycastHit hit;
+            Debug.DrawRay(transform.position, collider.transform.position-transform.position, Color.red, 10f);
+            if (Physics.Raycast(transform.position, collider.transform.position-transform.position, out hit, 4, StopsExplosionLayers))
+            {
+                //collider.transform.position = Vector3.up*10f;
+            } 
+            else
+            {
+                Rigidbody objectRb = collider.GetComponent<Rigidbody>();
+                if (objectRb != null)
+                {
+                    objectRb.AddForce((collider.transform.position - transform.position).normalized * 50f, ForceMode.Impulse);
+                    Debug.DrawRay(transform.position, collider.transform.position - transform.position, Color.green, 10f);
+                }
+            }
+        }
+        frozen = false;
+        burned = false;
+        explosionStarted = false;
+        transform.position = Vector3.down * 1000f;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Firebolt")) {
+            burned = true;
+            Debug.Log("Firebolt collided with Bomb");
+            Explosion();
+            Rigidbody otherRb = other.GetComponent<Rigidbody>();
+            otherRb.velocity = Vector3.zero;
+            other.transform.position = Vector3.down * 1000f;
+        }
+        else if (other.gameObject.CompareTag("Iceball"))
+        {
+            Debug.Log("Iceball collided with Bomb");
+            frozen = true;
+        }
+    }
+}
