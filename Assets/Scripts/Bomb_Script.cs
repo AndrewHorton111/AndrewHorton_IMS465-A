@@ -56,11 +56,23 @@ public class Bomb_Script : MonoBehaviour
         {
             // Makes sure there is no object between the bomb and the target object.
             RaycastHit hit;
+            float length = (collider.transform.position - transform.position).magnitude;
             Debug.DrawRay(transform.position, collider.transform.position-transform.position, Color.red, 10f);
-            if (Physics.Raycast(transform.position, collider.transform.position-transform.position, out hit, 4, StopsExplosionLayers))
+            if (Physics.Raycast(transform.position, collider.transform.position-transform.position, out hit, length, StopsExplosionLayers))
             {
                 //collider.transform.position = Vector3.up*10f;
             } 
+            // Blows up breakable walls and floors.
+            else if (collider.gameObject.layer == 9 || collider.gameObject.layer == 10)
+            {
+                Debug.Log("Break hit");
+                Debug.DrawRay(transform.position, collider.transform.position - transform.position, Color.green, 10f);
+                Breakable_Script breakableScript = collider.gameObject.GetComponent<Breakable_Script>();
+                if (breakableScript != null)
+                {
+                    breakableScript.BreakObject();
+                }
+            }
             else
             {
                 Rigidbody objectRb = collider.GetComponent<Rigidbody>();
