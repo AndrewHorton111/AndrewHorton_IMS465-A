@@ -5,10 +5,13 @@ using UnityEngine;
 
 public class Fan_Script : MonoBehaviour
 {
+    public bool burned = false;
+    public bool frozen = false;
     public int direction;
     public LayerMask StopsFanLayers;
 
-    private float pushForce = 1f;
+    private float initialPushForce = 1f;
+    private float pushForce = 0;
     private bool turnedOn = true;
 
     // Start is called before the first frame update
@@ -26,7 +29,18 @@ public class Fan_Script : MonoBehaviour
     // Called 60 times a second.
     private void FixedUpdate()
     {
-        
+        if (burned == true)
+        {
+            pushForce = initialPushForce * 2f;
+        }
+        else if (frozen == true)
+        {
+            pushForce = 0f;
+        }
+        else
+        {
+            pushForce = initialPushForce;
+        }
     }
 
     public void switchFan()
@@ -53,12 +67,12 @@ public class Fan_Script : MonoBehaviour
                     rb.AddForce(Vector3.right * pushForce, ForceMode.Impulse);
                 }
                 // Direction is down
-                if (direction == 2)
+                else if (direction == 2)
                 {
                     rb.AddForce(Vector3.down * pushForce, ForceMode.Impulse);
                 }
                 // Direction is left
-                if (direction == 3)
+                else if (direction == 3)
                 {
                     rb.AddForce(Vector3.left * pushForce, ForceMode.Impulse);
                 }

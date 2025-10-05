@@ -41,5 +41,25 @@ public class Iceball_Script : MonoBehaviour
             iceballRb.velocity = Vector3.zero;
             transform.position = Vector3.down * 1000f;
         }
+        else if (other.gameObject.CompareTag("Fan"))
+        {
+            Fan_Script fan = other.GetComponent<Fan_Script>();
+            if (fan.burned) {
+                fan.burned = false;
+            }
+            else
+            {
+                fan.frozen = true;
+            }
+        }
+        else
+        {
+            if (!other.gameObject.CompareTag("Player") && other.gameObject.layer != 1)
+            {
+                iceballRb.velocity = Vector3.zero;
+                transform.position = Vector3.down * 20000f;
+            }
+
+        }
     }
 }

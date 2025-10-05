@@ -8,6 +8,8 @@ TagManager:
   - Firebolt
   - Iceball
   - Bomb
+  - Ice
+  - Fan
   layers:
   - Default
   - TransparentFX
