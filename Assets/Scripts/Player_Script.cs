@@ -14,6 +14,10 @@ public class Player_Script : MonoBehaviour
     public GameObject firebolt;
     public GameObject iceball;
     public GameObject bomb;
+    public GameObject gameManager;
+    public GameObject UI_Image;
+    public int level;
+    public GameObject[] levelStarts;
 
     private float moveSpeed = 100f;
     private float maxSpeed = 5f;
@@ -39,6 +43,8 @@ public class Player_Script : MonoBehaviour
     //private IEnumerator iceballCoroutine;
     //private IEnumerator bombCoroutine;
 
+    private SelectedAbility_Script selectAbility;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,6 +54,10 @@ public class Player_Script : MonoBehaviour
         bombRb = bomb.GetComponent<Rigidbody>();
         //groundLayer = LayerMask.GetMask("Ground");
         defaultPos = transform;
+
+        selectAbility = UI_Image.GetComponent<SelectedAbility_Script>();
+
+        level = 1;
     }
 
     // Update is called once per frame
@@ -69,6 +79,7 @@ public class Player_Script : MonoBehaviour
         {
             SetAllToolsFalse();
             useFirebolt = true;
+            selectAbility.ChnageSprite(1);
         }
 
         // Sets the iceball as active when the user presses "2".
@@ -76,6 +87,7 @@ public class Player_Script : MonoBehaviour
         {
             SetAllToolsFalse();
             useIceball = true;
+            selectAbility.ChnageSprite(2);
         }
 
         // Sets the bomb as active when the user presses "3".
@@ -83,6 +95,7 @@ public class Player_Script : MonoBehaviour
         {
             SetAllToolsFalse();
             useBomb = true;
+            selectAbility.ChnageSprite(3);
         }
 
         // Makes the tool shoot towards the cursor, or places the bomb where the player is.
@@ -198,6 +211,16 @@ public class Player_Script : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        // Checks if reached the end of the level.
+        if (other.gameObject.layer == 11)
+        {
+            level++;
+            transform.position = levelStarts[level].transform.position;
+            Camera.main.transform.position = new Vector3(74, 9, -20);
+        }
+    }
 
     // Displays the check the game does to see if the player is grounded.
     // Only displayed in Scene view.

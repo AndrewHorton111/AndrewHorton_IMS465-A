@@ -9,10 +9,10 @@ public class Fan_Script : MonoBehaviour
     public bool frozen = false;
     public int direction;
     public LayerMask StopsFanLayers;
+    public bool turnedOn = true;
 
     private float initialPushForce = 1f;
     private float pushForce = 0;
-    private bool turnedOn = true;
 
     // Start is called before the first frame update
     void Start()
