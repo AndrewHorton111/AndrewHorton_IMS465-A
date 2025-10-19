@@ -24,13 +24,13 @@ public class SelectedAbility_Script : MonoBehaviour
 
     public void ChnageSprite(int newAbility)
     {
-        Debug.Log("Check #1");
+        //Debug.Log("Check #1");
         if (image == null)
         {
             return;
         }
 
-        Debug.Log("Check #2");
+        //Debug.Log("Check #2");
         if (newAbility == 1)
         {
             image.sprite = firebolt;
@@ -38,7 +38,7 @@ public class SelectedAbility_Script : MonoBehaviour
         else if (newAbility == 2)
         {
             image.sprite = iceball;
-            Debug.Log("Check #3");
+            //Debug.Log("Check #3");
         }
         else if (newAbility == 3)
         {

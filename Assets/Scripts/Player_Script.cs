@@ -18,6 +18,7 @@ public class Player_Script : MonoBehaviour
     public GameObject UI_Image;
     public int level;
     public GameObject[] levelStarts;
+    public GameObject[] cameraPositions;
 
     private float moveSpeed = 100f;
     private float maxSpeed = 5f;
@@ -56,8 +57,6 @@ public class Player_Script : MonoBehaviour
         defaultPos = transform;
 
         selectAbility = UI_Image.GetComponent<SelectedAbility_Script>();
-
-        level = 1;
     }
 
     // Update is called once per frame
@@ -217,9 +216,14 @@ public class Player_Script : MonoBehaviour
         if (other.gameObject.layer == 11)
         {
             level++;
-            transform.position = levelStarts[level].transform.position;
-            Camera.main.transform.position = new Vector3(74, 9, -20);
+            ChangeLevel(level);
         }
+    }
+
+    public void ChangeLevel(int levelNum)
+    {
+        transform.position = levelStarts[levelNum].transform.position;
+        Camera.main.transform.position = cameraPositions[levelNum].transform.position;
     }
 
     // Displays the check the game does to see if the player is grounded.

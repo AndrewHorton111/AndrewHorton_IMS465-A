@@ -5,10 +5,25 @@ using UnityEngine.SceneManagement;
 
 public class StartMenu_Script : MonoBehaviour
 {
+    private GameObject gameManager;
+    private GameManager_Script gameManagerScript;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameManager = GameObject.FindWithTag("GameManager");
+        if (gameManager == null)
+        {
+            Debug.Log("ERROR in StartMenu");
+        }
+        else
+        {
+            gameManagerScript = gameManager.GetComponent<GameManager_Script>();
+            if (gameManagerScript == null)
+            {
+                Debug.Log("ERROR in StartMenu");
+            }
+        }
     }
 
     // Update is called once per frame
@@ -19,6 +34,7 @@ public class StartMenu_Script : MonoBehaviour
 
     public void onNewGameButton()
     {
+        gameManagerScript.SetLevel(0);
         SceneManager.LoadScene("Level1");
     }
 

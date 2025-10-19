@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Resources;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
@@ -11,13 +12,29 @@ public class Fan_Script : MonoBehaviour
     public LayerMask StopsFanLayers;
     public bool turnedOn = true;
 
+    public GameObject neutral;
+    public GameObject ice;
+    public GameObject fire;
+
     private float initialPushForce = 1f;
     private float pushForce = 0;
+    private Vector3 spritePos;
+    //private DynamicFanSprite_Script fanSpriteScript;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        //fanSpriteScript = GetComponentInChildren<DynamicFanSprite_Script>();
+        //if (fanSpriteScript == null)
+        //{
+        //    Debug.Log("ERROR in Fan_Script");
+        //}
+
+        if (neutral == null || ice == null || fire == null)
+        {
+            Debug.Log("ERROR in Fan_Script");
+        }
+        spritePos = neutral.transform.position;
     }
 
     // Update is called once per frame
@@ -32,14 +49,24 @@ public class Fan_Script : MonoBehaviour
         if (burned == true)
         {
             pushForce = initialPushForce * 2f;
+            fire.transform.position = spritePos;
+            ice.transform.position = Vector3.down * 500;
+            neutral.transform.position = Vector3.down * 500;
+
         }
         else if (frozen == true)
         {
             pushForce = 0f;
+            ice.transform.position = spritePos;
+            neutral.transform.position = Vector3.down * 500;
+            fire.transform.position = Vector3.down * 500;
         }
         else
         {
             pushForce = initialPushForce;
+            neutral.transform.position = spritePos;
+            ice.transform.position = Vector3.down * 500;
+            fire.transform.position = Vector3.down * 500;
         }
     }
 

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e51a056fdd39f1b4ca3b322742eee527
+guid: 127f75af2cfa0c749963290cfd0e7a54
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -122,38 +122,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Fan
+  - name: Cart
     originalName: 
-    pivot: {x: 0.6756757, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 210
-      y: 4
-      width: 74
-      height: 400
-    spriteID: f70b4178b19c44d4d9bd8085739a371e
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 210, y: 4}
-  - name: Frame_1
-    originalName: 
-    pivot: {x: 0.5208333, y: 0}
+    pivot: {x: 0.50000006, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 96
-      height: 400
-    spriteID: 106e5f04ee660a54ebcb2fe75560d322
+      width: 170
+      height: 197
+    spriteID: 0caf1e76e1f4c6642846fcac4c9844d7
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -162,67 +142,29 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: Frame_2
-    originalName: 
-    pivot: {x: 0.5319149, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 108
-      y: 4
-      width: 94
-      height: 400
-    spriteID: 95bad118b342188469cb019e7c9dfe62
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 108, y: 4}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 696030337
+      value0: 49675204
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: Fan
+    name: Cart
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Frame_0
+    - name: Cart
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 0
+        x: 15
         y: 0
-        width: 74
-        height: 400
-      spriteId: f70b4178b19c44d4d9bd8085739a371e
-    - name: Frame_1
-      frameIndex: 1
-      additiveSortOrder: 0
-      cellRect:
-        x: 0
-        y: 0
-        width: 96
-        height: 400
-      spriteId: 106e5f04ee660a54ebcb2fe75560d322
-    - name: Frame_2
-      frameIndex: 2
-      additiveSortOrder: 0
-      cellRect:
-        x: 0
-        y: 0
-        width: 94
-        height: 400
-      spriteId: 95bad118b342188469cb019e7c9dfe62
+        width: 170
+        height: 197
+      spriteId: 0caf1e76e1f4c6642846fcac4c9844d7
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -241,5 +183,5 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 100, y: 400}
-  previousTextureSize: {x: 512, y: 512}
+  canvasSize: {x: 200, y: 200}
+  previousTextureSize: {x: 256, y: 256}
