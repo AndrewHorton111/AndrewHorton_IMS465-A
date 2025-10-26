@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager_Script : MonoBehaviour
 {
     public int level;
+    public bool restart = false;
 
     private GameObject player;
     private Player_Script playerScript;
@@ -44,10 +45,23 @@ public class GameManager_Script : MonoBehaviour
                 }
                 else
                 {
+                    playerScript.level = level;
+                    Debug.Log("Player Level: " + playerScript.level);
                     playerScript.ChangeLevel(level);
                 }
             }
         }
+    }
+
+    public void RestartLevel()
+    {
+        restart = true;
+        SceneManager.LoadScene("LevelSelect_Menu");
+    }
+
+    public void SetPlayingFalse()
+    {
+        gamePlaying = false;
     }
 
     public void SetLevel(int levelNum)

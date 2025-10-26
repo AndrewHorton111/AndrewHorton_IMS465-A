@@ -7,10 +7,17 @@ public class LevelSelect_Script : MonoBehaviour
 {
     private GameObject gameManager;
     private GameManager_Script gameManagerScript;
+    private CanvasGroup canvasGroup;
 
     // Start is called before the first frame update
     void Start()
     {
+        canvasGroup = GetComponent<CanvasGroup>();
+        if (canvasGroup == null)
+        {
+            Debug.Log("ERROR in CanvasGroup portion of the PauseMenu_Script");
+        }
+
         gameManager = GameObject.FindWithTag("GameManager");
         if (gameManager == null)
         {
@@ -22,6 +29,16 @@ public class LevelSelect_Script : MonoBehaviour
             if (gameManagerScript == null)
             {
                 Debug.Log("ERROR in LevelSelect");
+            }
+            else
+            {
+                gameManagerScript.SetPlayingFalse();
+                if (gameManagerScript.restart)
+                {
+                    gameManagerScript.restart = false;
+                    canvasGroup.alpha = 0;
+                    Restart(gameManagerScript.level);
+                }
             }
         }
     }
@@ -71,5 +88,37 @@ public class LevelSelect_Script : MonoBehaviour
     public void onHomeButton()
     {
         SceneManager.LoadScene("Start_Menu");
+    }
+
+    public void Restart(int level)
+    {
+        if (level == 0)
+        {
+            on1_1Button();
+        }
+        else if (level == 1)
+        {
+            on1_2Button();
+        }
+        else if (level == 2)
+        {
+            on1_3Button();
+        }
+        else if (level == 3)
+        {
+            on2_1Button();
+        }
+        else if (level == 4)
+        {
+            on2_2Button();
+        }
+        else if (level == 5)
+        {
+            on2_3Button();
+        }
+        else
+        {
+            Debug.Log("ERROR in LevelSelect_Script regarding the Restart method");
+        }
     }
 }

@@ -10,13 +10,13 @@ public class Fan_Script : MonoBehaviour
     public bool frozen = false;
     public int direction;
     public LayerMask StopsFanLayers;
-    public bool turnedOn = true;
+    public bool turnedOn = false;
 
     public GameObject neutral;
     public GameObject ice;
     public GameObject fire;
 
-    private float initialPushForce = 1f;
+    private float initialPushForce = 0.25f;
     private float pushForce = 0;
     private Vector3 spritePos;
     //private DynamicFanSprite_Script fanSpriteScript;
@@ -29,7 +29,7 @@ public class Fan_Script : MonoBehaviour
         //{
         //    Debug.Log("ERROR in Fan_Script");
         //}
-
+        //Debug.Log("Check 1 - " + turnedOn);
         if (neutral == null || ice == null || fire == null)
         {
             Debug.Log("ERROR in Fan_Script");
@@ -46,6 +46,7 @@ public class Fan_Script : MonoBehaviour
     // Called 60 times a second.
     private void FixedUpdate()
     {
+        //Debug.Log("Check 2 - " + this.name + " - " + turnedOn);
         if (burned == true)
         {
             pushForce = initialPushForce * 2f;
@@ -72,6 +73,7 @@ public class Fan_Script : MonoBehaviour
 
     public void switchFan()
     {
+        //Debug.Log("Switch");
         turnedOn = !turnedOn;
     }
 

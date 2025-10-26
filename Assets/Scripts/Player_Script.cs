@@ -176,7 +176,7 @@ public class Player_Script : MonoBehaviour
     private void IsGroundedCheck()
     {
         isGrounded = Physics.CheckSphere(groundObject.transform.position, 0.2f, jumpableLayers);
-        Debug.Log(isGrounded);
+        //Debug.Log(isGrounded);
     }
     
     // Sets all of the tools to false whenever the user switches tools or the next level starts.
@@ -216,12 +216,14 @@ public class Player_Script : MonoBehaviour
         if (other.gameObject.layer == 11)
         {
             level++;
+            //Debug.Log("Check 1");
             ChangeLevel(level);
         }
     }
 
     public void ChangeLevel(int levelNum)
     {
+        Debug.Log("Check 1 - " + level);
         transform.position = levelStarts[levelNum].transform.position;
         Camera.main.transform.position = cameraPositions[levelNum].transform.position;
     }

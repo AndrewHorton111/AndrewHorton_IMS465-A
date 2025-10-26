@@ -78,7 +78,7 @@ public class Bomb_Script : MonoBehaviour
                 Rigidbody objectRb = collider.GetComponent<Rigidbody>();
                 if (objectRb != null)
                 {
-                    objectRb.AddForce((collider.transform.position - transform.position).normalized * 50f, ForceMode.Impulse);
+                    objectRb.AddForce((collider.transform.position - transform.position).normalized * 20f, ForceMode.Impulse);
                     Debug.DrawRay(transform.position, collider.transform.position - transform.position, Color.green, 10f);
                 }
             }

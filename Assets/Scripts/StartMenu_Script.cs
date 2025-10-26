@@ -23,6 +23,10 @@ public class StartMenu_Script : MonoBehaviour
             {
                 Debug.Log("ERROR in StartMenu");
             }
+            else
+            {
+                gameManagerScript.SetPlayingFalse();
+            }
         }
     }
 

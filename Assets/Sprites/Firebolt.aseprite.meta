@@ -124,15 +124,15 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Firebolt
     originalName: 
-    pivot: {x: 0.48322153, y: -0.060606062}
+    pivot: {x: 0.5159575, y: -0.25925925}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 149
-      height: 165
+      width: 188
+      height: 135
     spriteID: 1943b8e7806bb4246b885c512c2be2c9
     spriteBone: []
     spriteOutline: []
@@ -160,10 +160,10 @@ ScriptedImporter:
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 28
-        y: 10
-        width: 149
-        height: 165
+        x: 3
+        y: 35
+        width: 188
+        height: 135
       spriteId: 1943b8e7806bb4246b885c512c2be2c9
     linkedCells: []
     parentIndex: -1

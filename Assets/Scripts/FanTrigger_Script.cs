@@ -19,6 +19,12 @@ public class FanTrigger_Script : MonoBehaviour
         }
         lastState = parentScript.turnedOn;
         startingPosition = transform.position;
+
+        if (!parentScript.turnedOn)
+        {
+            transform.position = Vector3.down * 1000;
+            lastState = false;
+        }
     }
 
     // Update is called once per frame
@@ -32,7 +38,7 @@ public class FanTrigger_Script : MonoBehaviour
         //Debug.Log(parentScript.turnedOn + " " + lastState);
         if (parentScript.turnedOn != lastState)
         {
-            if (parentScript.turnedOn)
+            if (parentScript.turnedOn && !parentScript.frozen)
             {
                 Debug.Log("First");
                 transform.position = startingPosition;

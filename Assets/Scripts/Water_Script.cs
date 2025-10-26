@@ -31,11 +31,11 @@ public class Water_Script : MonoBehaviour
             //Debug.Log("Check #1");
             if (other.gameObject.CompareTag("Iceball"))
             {
-                //Debug.Log("Check #2");
+                Debug.Log("Water Hit");
                 //frozen = true;
                 iceBlock.transform.position = transform.position;
-                transform.position = Vector3.down * 1000;
-                other.transform.position = Vector3.down * 10000;
+                transform.position = Vector3.up * 20000;
+                //other.transform.position = Vector3.down * 10000;
             }
         }
     }
