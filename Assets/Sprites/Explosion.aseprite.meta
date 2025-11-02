@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 283bc419b051ff44296e2f76f1c72906
+guid: 575d8a1517dfa2f46b2ea5c71631e1eb
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -122,18 +122,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Button
+  - name: Explosion
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5050505, y: -0.0050251256}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 98
-      height: 89
-    spriteID: 222db91cef9340b4695686ed55b6bb83
+      width: 198
+      height: 199
+    spriteID: fac1c9ae453a11f4fa5d45b9448780e0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -142,58 +142,29 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: Frame_1
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 101
-      width: 98
-      height: 89
-    spriteID: f49801b688d640b46b3c09c60b3e282a
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 101}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 1993771182
+      value0: 375565721
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: Button
+    name: Explosion
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Frame_0
+    - name: Explosion
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 1
-        y: 0
-        width: 98
-        height: 89
-      spriteId: 222db91cef9340b4695686ed55b6bb83
-    - name: Frame_1
-      frameIndex: 1
-      additiveSortOrder: 0
-      cellRect:
-        x: 1
-        y: 0
-        width: 98
-        height: 89
-      spriteId: f49801b688d640b46b3c09c60b3e282a
+        x: 0
+        y: 1
+        width: 198
+        height: 199
+      spriteId: fac1c9ae453a11f4fa5d45b9448780e0
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -212,5 +183,5 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 100, y: 100}
-  previousTextureSize: {x: 128, y: 256}
+  canvasSize: {x: 200, y: 200}
+  previousTextureSize: {x: 256, y: 256}

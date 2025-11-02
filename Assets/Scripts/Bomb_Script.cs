@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bomb_Script : MonoBehaviour
 {
     public GameObject player;
+    public GameObject ExplosionSprite;
     public LayerMask explodableLayers;
     public LayerMask StopsExplosionLayers;
 
@@ -51,7 +52,7 @@ public class Bomb_Script : MonoBehaviour
             return;
         }
 
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 4, explodableLayers);
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 3, explodableLayers);
         foreach (Collider collider in hitColliders)
         {
             // Makes sure there is no object between the bomb and the target object.
@@ -83,10 +84,13 @@ public class Bomb_Script : MonoBehaviour
                 }
             }
         }
+        ExplosionSprite.transform.position = transform.position;
+        ExplosionSprite.transform.position += Vector3.down * 2f;
         frozen = false;
         burned = false;
         explosionStarted = false;
         transform.position = Vector3.down * 1000f;
+        StartCoroutine(MoveExplosionSprite());
     }
 
     private void OnTriggerEnter(Collider other)
@@ -104,5 +108,12 @@ public class Bomb_Script : MonoBehaviour
             Debug.Log("Iceball collided with Bomb");
             frozen = true;
         }
+    }
+
+    // Sets the sprite of the explosion when the explosive explodes.
+    private IEnumerator MoveExplosionSprite()
+    {
+        yield return new WaitForSeconds(1);
+        ExplosionSprite.transform.position += Vector3.one * 10000;
     }
 }
