@@ -28,9 +28,18 @@ public class Breakable_Script : MonoBehaviour
         Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
         if (rb != null )
         {
-            Debug.Log(rb.velocity.magnitude);
-            if (rb.velocity.magnitude > maxSpeedThreshold)
+            //Debug.Log(rb.velocity.magnitude);
+            //Debug.Log(collision.relativeVelocity.magnitude);
+            if (collision.relativeVelocity.magnitude > maxSpeedThreshold)
             {
+                if (collision.relativeVelocity.x > 0)
+                {
+                    rb.velocity = new Vector3(-1, 0, 0);
+                }
+                else
+                {
+                    rb.velocity = new Vector3(1, 0, 0);
+                }
                 BreakObject();
             }
         }

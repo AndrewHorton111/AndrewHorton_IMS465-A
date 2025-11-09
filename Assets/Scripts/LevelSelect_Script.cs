@@ -69,24 +69,25 @@ public class LevelSelect_Script : MonoBehaviour
 
     public void on2_1Button()
     {
-        gameManagerScript.SetLevel(2);
+        gameManagerScript.SetLevel(3);
         SceneManager.LoadScene("Level1");
     }
 
     public void on2_2Button()
     {
-        gameManagerScript.SetLevel(2);
+        gameManagerScript.SetLevel(4);
         SceneManager.LoadScene("Level1");
     }
 
     public void on2_3Button()
     {
-        gameManagerScript.SetLevel(2);
+        gameManagerScript.SetLevel(5);
         SceneManager.LoadScene("Level1");
     }
 
     public void onHomeButton()
     {
+        Debug.Log("Home clicked");
         SceneManager.LoadScene("Start_Menu");
     }
 
@@ -102,6 +103,7 @@ public class LevelSelect_Script : MonoBehaviour
         }
         else if (level == 2)
         {
+            Debug.Log("1-3 Clicked");
             on1_3Button();
         }
         else if (level == 3)

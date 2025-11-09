@@ -38,19 +38,29 @@ public class FanTrigger_Script : MonoBehaviour
         //Debug.Log(parentScript.turnedOn + " " + lastState);
         if (parentScript.turnedOn != lastState)
         {
+            //Debug.Log("Fan Script stuff");
             if (parentScript.turnedOn && !parentScript.frozen)
             {
-                Debug.Log("First");
+                //Debug.Log("First");
                 transform.position = startingPosition;
                 lastState = true;
             }
             else
             {
-                Debug.Log("Second");
+                //Debug.Log("Second");
                 transform.position = Vector3.down * 1000;
                 lastState = false;
             }
-            Debug.Log(transform.position.y);
+            //Debug.Log(transform.position.y);
+        }
+
+        if (parentScript.frozen)
+        {
+            transform.position = Vector3.down * 1000;
+        }
+        else if (parentScript.turnedOn)
+        {
+            transform.position = startingPosition;
         }
     }
 

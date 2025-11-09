@@ -8,6 +8,7 @@ public class Bomb_Script : MonoBehaviour
     public GameObject ExplosionSprite;
     public LayerMask explodableLayers;
     public LayerMask StopsExplosionLayers;
+    private float ExplosionForce = 10f;
 
     private Rigidbody bombRb;
     private Rigidbody playerRb;
@@ -31,7 +32,7 @@ public class Bomb_Script : MonoBehaviour
     // Runs 60 times a second.
     private void FixedUpdate()
     {
-        if (explosionStarted == false && transform.position.y > 0.5 && frozen == false)
+        if (explosionStarted == false && transform.position.y > -50 && frozen == false)
         {
             explosionStarted = true;
             StartCoroutine(ExplosionTimer(3));
@@ -48,7 +49,7 @@ public class Bomb_Script : MonoBehaviour
     // Explodes the bomb when detonated
     private void Explosion()
     {
-        if ((frozen && !burned) || transform.position.y < 0.5) {
+        if ((frozen && !burned) || transform.position.y < -50) {
             return;
         }
 
@@ -79,7 +80,7 @@ public class Bomb_Script : MonoBehaviour
                 Rigidbody objectRb = collider.GetComponent<Rigidbody>();
                 if (objectRb != null)
                 {
-                    objectRb.AddForce((collider.transform.position - transform.position).normalized * 20f, ForceMode.Impulse);
+                    objectRb.AddForce((collider.transform.position - transform.position).normalized * ExplosionForce, ForceMode.Impulse);
                     Debug.DrawRay(transform.position, collider.transform.position - transform.position, Color.green, 10f);
                 }
             }
@@ -89,7 +90,7 @@ public class Bomb_Script : MonoBehaviour
         frozen = false;
         burned = false;
         explosionStarted = false;
-        transform.position = Vector3.down * 1000f;
+        transform.position = Vector3.down * 100000f;
         StartCoroutine(MoveExplosionSprite());
     }
 

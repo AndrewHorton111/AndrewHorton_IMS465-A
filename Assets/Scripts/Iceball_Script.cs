@@ -30,7 +30,7 @@ public class Iceball_Script : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Collision");
+        //Debug.Log("Collision");
         if (other.gameObject.CompareTag("Firebolt"))
         {
             Debug.Log("Iceball collided with Firebolt");

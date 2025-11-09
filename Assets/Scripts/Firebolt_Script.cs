@@ -40,6 +40,13 @@ public class Firebolt_Script : MonoBehaviour
                 fan.burned = true;
             }
         }
+        else if (other.gameObject.CompareTag("Wood"))
+        {
+            Wood_Script wood = other.GetComponent<Wood_Script>();
+            wood.OnBurn();
+            fireboltRb.velocity = Vector3.zero;
+            transform.position = Vector3.down * 10000;
+        }
         else
         {
             if (!other.gameObject.CompareTag("Player") && other.gameObject.layer != 1)

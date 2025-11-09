@@ -26,7 +26,7 @@ public class Player_Script : MonoBehaviour
     private Transform defaultPos;
 
     private float fireboltLaunchForce = 15f;
-    private float iceballLaunchForce = 5f;
+    private float iceballLaunchForce = 8f;
 
     private Rigidbody playerRb;
     private Rigidbody fireboltRb;
@@ -45,6 +45,8 @@ public class Player_Script : MonoBehaviour
     //private IEnumerator bombCoroutine;
 
     private SelectedAbility_Script selectAbility;
+
+    private Vector3 cursorOffset = new Vector3(0, 0, -5);
 
     // Start is called before the first frame update
     void Start()
@@ -103,7 +105,7 @@ public class Player_Script : MonoBehaviour
             if (useFirebolt && fireboltCooldowned)
             {
                 fireboltRb.velocity = Vector3.zero;
-                Vector3 direction = cursor.transform.position - transform.position;
+                Vector3 direction = (cursor.transform.position - cursorOffset) - transform.position;
                 firebolt.transform.position = transform.position + direction.normalized;
                 firebolt.transform.rotation = Quaternion.LookRotation(direction);
                 fireboltRb.AddForce(direction.normalized * fireboltLaunchForce, ForceMode.Impulse);
@@ -113,7 +115,7 @@ public class Player_Script : MonoBehaviour
             else if (useIceball && iceballCooldowned)
             {
                 iceballRb.velocity = Vector3.zero;
-                Vector3 direction = cursor.transform.position - transform.position;
+                Vector3 direction = (cursor.transform.position - cursorOffset) - transform.position;
                 iceball.transform.position = transform.position + (direction.normalized*1.2f);
                 iceballRb.AddForce(direction.normalized * iceballLaunchForce, ForceMode.Impulse);
                 iceballCooldowned = false;
@@ -122,7 +124,7 @@ public class Player_Script : MonoBehaviour
             else if (useBomb && bombCooldowned)
             {
                 bombRb.velocity = Vector3.zero;
-                Vector3 direction = cursor.transform.position - transform.position;
+                Vector3 direction = (cursor.transform.position - cursorOffset) - transform.position;
                 bomb.transform.position = transform.position + (direction.normalized * 1.5f);
                 bombCooldowned = false;
                 StartCoroutine(Cooldown(3));
@@ -167,7 +169,7 @@ public class Player_Script : MonoBehaviour
         Vector3 mousePos = Input.mousePosition;
         mousePos = Camera.main.ScreenToWorldPoint(mousePos);
         mousePos = mousePos - Vector3.forward * -20;
-        cursor.transform.position = mousePos; 
+        cursor.transform.position = mousePos + cursorOffset; 
 
         
     }
@@ -212,11 +214,12 @@ public class Player_Script : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //Debug.Log("Player On Trigger Layer: " + other.gameObject.layer + "Object: " + other);
         // Checks if reached the end of the level.
         if (other.gameObject.layer == 11)
         {
             level++;
-            //Debug.Log("Check 1");
+            Debug.Log("Switch Level");
             ChangeLevel(level);
         }
     }

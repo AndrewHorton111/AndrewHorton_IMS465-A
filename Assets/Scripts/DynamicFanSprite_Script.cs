@@ -36,7 +36,7 @@ public class DynamicFanSprite_Script : MonoBehaviour
         //Debug.Log("Check #1");
         if (image == null)
         {
-            Debug.Log("BAD");
+            Debug.Log("ERROR in DynamiFanSprite_Script");
             //return;
         }
 

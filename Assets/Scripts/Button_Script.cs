@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Button_Script : MonoBehaviour
 {
+    public bool isFanOn = false;
     public GameObject OnState;
     public GameObject OffState;
     public GameObject fan;
 
     private Fan_Script fanScript;
-    private bool isFanOn = false;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +19,14 @@ public class Button_Script : MonoBehaviour
         {
             Debug.LogError("ERROR: No script found in button code.");
         }
+
+
+        if (isFanOn)
+        {
+            OnState.transform.position = OffState.transform.position;
+            OffState.transform.position = Vector3.down * 1000;
+        }
+
     }
 
     // Update is called once per frame
@@ -34,7 +42,7 @@ public class Button_Script : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("CHECK");
+        //Debug.Log("CHECK");
         fanScript.switchFan();
         if (isFanOn)
         {

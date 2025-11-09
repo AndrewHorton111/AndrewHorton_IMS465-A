@@ -7,6 +7,7 @@ public class GameManager_Script : MonoBehaviour
 {
     public int level;
     public bool restart = false;
+    public bool loaded = false;
 
     private GameObject player;
     private Player_Script playerScript;
@@ -15,7 +16,11 @@ public class GameManager_Script : MonoBehaviour
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
-        
+        loaded = true;
+        if (SceneManager.GetActiveScene().name == "Loading")
+        {
+            SceneManager.LoadScene("Start_Menu");
+        }
     }
 
 
@@ -53,8 +58,14 @@ public class GameManager_Script : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        
+    }
+
     public void RestartLevel()
     {
+        level = playerScript.level;
         restart = true;
         SceneManager.LoadScene("LevelSelect_Menu");
     }
