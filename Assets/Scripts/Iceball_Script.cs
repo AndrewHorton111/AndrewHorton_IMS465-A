@@ -30,7 +30,7 @@ public class Iceball_Script : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //Debug.Log("Collision");
+        Debug.Log("Collision: " + other.name);
         if (other.gameObject.CompareTag("Firebolt"))
         {
             Debug.Log("Iceball collided with Firebolt");
@@ -51,6 +51,13 @@ public class Iceball_Script : MonoBehaviour
             {
                 fan.frozen = true;
             }
+        }
+        else if (other.gameObject.CompareTag("Wood"))
+        {
+            Wood_Script wood = other.GetComponent<Wood_Script>();
+            wood.burned = false;
+            iceballRb.velocity = Vector3.zero;
+            transform.position = Vector3.down * 10000;
         }
         else
         {
