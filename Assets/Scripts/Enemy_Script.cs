@@ -77,6 +77,14 @@ public class Enemy_Script : MonoBehaviour
         {
             rb.velocity = Vector3.zero;
         }
+
+        if (rb.velocity.y > (Physics.gravity.y * -1) + 1f) {
+            rb.velocity = rb.velocity + (Vector3.down * Physics.gravity.y * -0.5f);
+        }
+        else
+        {
+            Debug.Log(rb.velocity.y + " " + (Physics.gravity.y * -1) + 1f);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
