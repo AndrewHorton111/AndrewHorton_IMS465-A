@@ -23,7 +23,7 @@ public class StartMenu_Script : MonoBehaviour
             {
                 Debug.Log("ERROR in StartMenu");
             }
-            else if (gameManagerScript.loaded == false)
+            else if (gameManagerScript.loaded == true)
             {
                 gameManagerScript.SetPlayingFalse();
             }
@@ -49,7 +49,7 @@ public class StartMenu_Script : MonoBehaviour
 
     public void OnCreditsButton()
     {
-
+        SceneManager.LoadScene("Credits");
     }
 
     public void OnQuitButton()

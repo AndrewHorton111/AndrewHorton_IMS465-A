@@ -55,11 +55,13 @@ public class PauseMenu_Script : MonoBehaviour
         if (isShowing)
         {
             canvasGroup.alpha = 1;
+            UnityEngine.Cursor.visible = true;
             Time.timeScale = 0f;
         }
         else
         {
             canvasGroup.alpha = 0;
+            UnityEngine.Cursor.visible = false;
             Time.timeScale = 1f;
         }
     }

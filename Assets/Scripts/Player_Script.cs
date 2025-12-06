@@ -16,9 +16,11 @@ public class Player_Script : MonoBehaviour
     public GameObject bomb;
     public GameObject gameManager;
     public GameObject UI_Image;
+    public GameObject sprite;
     public int level;
     public GameObject[] levelStarts;
     public GameObject[] cameraPositions;
+    public AudioClip duckQuack;
 
     private float moveSpeed = 100f;
     private float maxSpeed = 5f;
@@ -46,6 +48,8 @@ public class Player_Script : MonoBehaviour
 
     private SelectedAbility_Script selectAbility;
 
+    private AudioSource audioSource;
+
     private Vector3 cursorOffset = new Vector3(0, 0, -5);
 
     // Start is called before the first frame update
@@ -59,6 +63,10 @@ public class Player_Script : MonoBehaviour
         defaultPos = transform;
 
         selectAbility = UI_Image.GetComponent<SelectedAbility_Script>();
+
+        audioSource = gameObject.GetComponent<AudioSource>();
+
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
@@ -72,6 +80,7 @@ public class Player_Script : MonoBehaviour
             {
                 playerRb.velocity = new Vector3(playerRb.velocity.x, 0, 0);
                 playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                audioSource.PlayOneShot(duckQuack, 1f);
             }
         }
 
@@ -171,7 +180,14 @@ public class Player_Script : MonoBehaviour
         mousePos = mousePos - Vector3.forward * -20;
         cursor.transform.position = mousePos + cursorOffset; 
 
-        
+        if (playerRb.velocity.x < 0)
+        {
+            sprite.transform.localScale = Vector3.left + new Vector3(0, 1, 1);
+        } else if (playerRb.velocity.x > 0)
+        {
+            sprite.transform.localScale = Vector3.right + new Vector3(0, 1, 1);
+        }
+
     }
 
     // Checks that the player is on the ground.

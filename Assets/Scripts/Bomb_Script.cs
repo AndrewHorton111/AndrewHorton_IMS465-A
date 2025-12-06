@@ -8,6 +8,8 @@ public class Bomb_Script : MonoBehaviour
     public GameObject ExplosionSprite;
     public LayerMask explodableLayers;
     public LayerMask StopsExplosionLayers;
+    public AudioClip bombExplosionSound;
+
     private float ExplosionForce = 10f;
 
     private Rigidbody bombRb;
@@ -17,10 +19,12 @@ public class Bomb_Script : MonoBehaviour
     private bool frozen = false;
     private bool burned = false;
 
+    private AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -84,6 +88,7 @@ public class Bomb_Script : MonoBehaviour
                     Debug.DrawRay(transform.position, collider.transform.position - transform.position, Color.green, 10f);
                 }
             }
+            audioSource.PlayOneShot(bombExplosionSound, 0.04f);
         }
         ExplosionSprite.transform.position = transform.position;
         ExplosionSprite.transform.position += Vector3.down * 2f;

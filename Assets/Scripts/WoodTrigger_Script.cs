@@ -38,19 +38,21 @@ public class WoodTrigger_Script : MonoBehaviour
         //Debug.Log(burned);
         if (burned)
         {
-            Debug.Log("Check #2");
+            //Debug.Log("Check #2");
             Enemy_Script enemy = other.GetComponent<Enemy_Script>();
             if (enemy != null)
             {
-                Debug.Log("Check #3");
+                //Debug.Log("Check #3");
                 if (enemy.frozen)
                 {
                     enemy.frozen = false;
+                    enemy.neutralSprite.transform.position = enemy.iceSprite.transform.position;
+                    enemy.iceSprite.transform.position += Vector3.down * 100;
                     alreadyBurned = true;
                 }
                 else if (!alreadyBurned)
                 {
-                    Debug.Log("AlreadyBurned Status: " + alreadyBurned);
+                    //Debug.Log("AlreadyBurned Status: " + alreadyBurned);
                     enemy.burned = true;
                     StartCoroutine(enemy.stopBurn());
                 }

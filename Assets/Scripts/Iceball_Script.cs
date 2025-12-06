@@ -5,15 +5,19 @@ using UnityEngine;
 public class Iceball_Script : MonoBehaviour
 {
     public GameObject player;
+    public AudioClip iceBallFreezeSound;
 
     private Rigidbody iceballRb;
     private Rigidbody playerRb;
+
+    private AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
         iceballRb = GetComponent<Rigidbody>();
         playerRb = player.GetComponent<Rigidbody>();
+        audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -40,6 +44,7 @@ public class Iceball_Script : MonoBehaviour
 
             iceballRb.velocity = Vector3.zero;
             transform.position = Vector3.down * 1000f;
+            transform.position += Vector3.left * 100000f;
         }
         else if (other.gameObject.CompareTag("Fan"))
         {
@@ -51,6 +56,8 @@ public class Iceball_Script : MonoBehaviour
             {
                 fan.frozen = true;
             }
+            transform.position = Vector3.down * 1000f;
+            transform.position += Vector3.left * 100000f;
         }
         else if (other.gameObject.CompareTag("Wood"))
         {
@@ -58,6 +65,7 @@ public class Iceball_Script : MonoBehaviour
             wood.burned = false;
             iceballRb.velocity = Vector3.zero;
             transform.position = Vector3.down * 10000;
+            transform.position += Vector3.left * 100000f;
         }
         else
         {
@@ -65,8 +73,11 @@ public class Iceball_Script : MonoBehaviour
             {
                 iceballRb.velocity = Vector3.zero;
                 transform.position = Vector3.down * 20000f;
+                transform.position += Vector3.left * 100000f;
+                audioSource.PlayOneShot(iceBallFreezeSound, 0.4f);
             }
-
+            return;
         }
+        audioSource.PlayOneShot(iceBallFreezeSound, 0.4f);
     }
 }
